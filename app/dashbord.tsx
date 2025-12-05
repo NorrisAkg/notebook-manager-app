@@ -1,8 +1,9 @@
 import { CustomButton } from "@/components/CustomButton";
-import Stat from "@/components/dashbord/Stat";
+import Stat from "@/components/dashbord/StatCard";
 import { AppColors } from "@/constants/colors";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
+import { Link } from "expo-router";
 import { StyleSheet, Text, View } from "react-native";
 
 export default function dashboard() {
@@ -41,7 +42,7 @@ export default function dashboard() {
                     iconSize={18}
                     style={{ backgroundColor: 'transparent', }} title="Ajouter un contact" textSize={18} onPress={() => { }} />
             </LinearGradient>
-            <CustomButton style={{ marginTop: 8 }}
+            <CustomButton style={{ marginTop: 8, backgroundColor: 'transparent', }}
                 backgroundColor={AppColors.white}
                 icon="book"
                 iconSize={18}
@@ -49,7 +50,11 @@ export default function dashboard() {
                 title="Voir mes contacts"
                 textSize={18}
                 textColor="#000"
-                onPress={() => { }} />
+                onPress={() => { }} >
+                <Link href="/contacts" style={{ justifyContent: 'center', flex: 1, textAlign: 'center', color: AppColors.white, fontSize: 18 }}>
+                    <Text style={{ color: AppColors.white, fontSize: 18, fontWeight: 'bold', textAlign: 'center', paddingVertical: 16 }}>Commencer</Text>
+                </Link>
+            </CustomButton>
         </View>
     );
 }

@@ -13,7 +13,7 @@ interface StatProps {
     iconColor?: string;
 }
 
-export default function Stat(props: StatProps) {
+export default function StatCard(props: StatProps) {
     const { width, statTitle, statValue, icon, iconColor } = props;
 
     const styles = StyleSheet.create({
