@@ -1,5 +1,5 @@
 import { CustomButton } from "@/components/CustomButton";
-import Stat from "@/components/dashbord/StatCard";
+import Stat from "@/components/dashboard/StatCard";
 import { LinkButton } from "@/components/LinkButton";
 import { AppColors } from "@/constants/colors";
 import { Ionicons } from "@expo/vector-icons";

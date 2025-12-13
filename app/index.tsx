@@ -1,11 +1,22 @@
 import { CustomButton } from "@/components/CustomButton";
 import { AppColors } from "@/constants/colors";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { LinearGradient } from 'expo-linear-gradient';
-import { Link } from "expo-router";
+import { Link, RelativePathString, router } from "expo-router";
+import { useEffect } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 
 export default function Index() {
   const logo = require('@/assets/images/logo.jpg');
+
+  useEffect(() => {
+    (async () => {
+      const lastRoute = await AsyncStorage.getItem("LAST_ROUTE");
+      if (lastRoute && lastRoute !== "/") {
+        router.replace(lastRoute as RelativePathString);
+      }
+    })();
+  }, []);
 
   return (
     <View style={styles.container}>

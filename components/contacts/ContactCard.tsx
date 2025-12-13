@@ -1,11 +1,25 @@
 import { AppColors } from "@/constants/colors";
-import { Image, StyleSheet, View } from "react-native";
+import type { Contact } from "@/types/contact";
+import { sliceEthAddress } from "@/utils/eth-address-slicer";
+import { Image, StyleSheet, Text, View } from "react-native";
 
-export function ContactCard() {
+interface Props {
+    contact: Contact;
+}
+
+export function ContactCard({ contact }: Props) {
+    const contactItem = { ...contact, address: sliceEthAddress(contact.address) };
     return (
         <View style={styles.container}>
             <View style={styles.contactBox}>
-                <Image source={require('@/assets/images/avatar.png')} width={50} height={50} style={{ borderRadius: "100%" }} />
+                <View style={styles.avatarBox}>
+                    <Image source={require('@/assets/images/avatar.jpg')} style={{ width: '100%', height: '100%' }} />
+                </View>
+                <View style={styles.infosBox}>
+                    <Text style={styles.nameText}>{contactItem.name}</Text>
+                    <Text style={styles.addressText}>{contactItem.address}</Text>
+                    <Text style={styles.phoneText}>{contactItem.phone}</Text>
+                </View>
             </View>
         </View>
     );
@@ -22,5 +36,34 @@ const styles = StyleSheet.create({
     },
     contactBox: {
         flexDirection: 'row',
-    }
+        alignItems: 'center',
+        gap: 10,
+    },
+    avatarBox: {
+        borderWidth: 2,
+        borderColor: AppColors.primary,
+        width: 40,
+        height: 40,
+        borderRadius: "100%",
+        boxSizing: 'border-box',
+    },
+    infosBox: {
+        backgroundColor: 'transparent',
+        gap: 2,
+    },
+    nameText: {
+        fontSize: 16,
+        color: AppColors.black,
+        fontWeight: '600',
+    },
+    addressText: {
+        fontSize: 14,
+        color: AppColors.black,
+        opacity: 0.7,
+    },
+    phoneText: {
+        fontSize: 13,
+        color: AppColors.black,
+        opacity: 0.6,
+    },
 });

@@ -22,7 +22,7 @@ export default function LoginPage() {
                         <CustomButton
                             icon="wallet"
                             title="WalletConnect" onPress={() => { }} />
-                        <Link href="/dashboard" style={{ justifyContent: 'center', textAlign: 'center', color: AppColors.primary, fontSize: 18 }}>dashbord</Link>
+                        <Link href="/dashboard" style={{ justifyContent: 'center', textAlign: 'center', color: AppColors.primary, fontSize: 18 }}>dashboard</Link>
                     </View>
                 </View>
             </View>
