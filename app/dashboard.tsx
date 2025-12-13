@@ -1,9 +1,10 @@
 import { CustomButton } from "@/components/CustomButton";
 import Stat from "@/components/dashbord/StatCard";
+import { LinkButton } from "@/components/LinkButton";
 import { AppColors } from "@/constants/colors";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
-import { Link } from "expo-router";
+import { RelativePathString } from "expo-router";
 import { StyleSheet, Text, View } from "react-native";
 
 export default function dashboard() {
@@ -42,19 +43,12 @@ export default function dashboard() {
                     iconSize={18}
                     style={{ backgroundColor: 'transparent', }} title="Ajouter un contact" textSize={18} onPress={() => { }} />
             </LinearGradient>
-            <CustomButton style={{ marginTop: 8, backgroundColor: 'transparent', }}
-                backgroundColor={AppColors.white}
-                icon="book"
+
+            <LinkButton backgroundColor={AppColors.white}
+                color={AppColors.black} textSize={18} icon="book"
                 iconSize={18}
-                iconColor="#000"
                 title="Voir mes contacts"
-                textSize={18}
-                textColor="#000"
-                onPress={() => { }} >
-                <Link href="/contacts" style={{ justifyContent: 'center', flex: 1, textAlign: 'center', color: AppColors.white, fontSize: 18 }}>
-                    <Text style={{ color: AppColors.white, fontSize: 18, fontWeight: 'bold', textAlign: 'center', paddingVertical: 16 }}>Commencer</Text>
-                </Link>
-            </CustomButton>
+                to={"/contacts" as RelativePathString} />
         </View>
     );
 }
@@ -65,7 +59,7 @@ const styles = StyleSheet.create({
         backgroundColor: AppColors.background,
         paddingHorizontal: 12,
         paddingVertical: 16,
-        gap: 8,
+        gap: 10,
         justifyContent: 'flex-start',
         alignItems: 'center',
     },
