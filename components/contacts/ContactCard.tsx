@@ -1,6 +1,7 @@
 import { AppColors } from "@/constants/colors";
 import type { Contact } from "@/types/contact";
 import { sliceEthAddress } from "@/utils/eth-address-slicer";
+import { Ionicons } from "@expo/vector-icons";
 import { Image, StyleSheet, Text, View } from "react-native";
 
 interface Props {
@@ -13,7 +14,7 @@ export function ContactCard({ contact }: Props) {
         <View style={styles.container}>
             <View style={styles.contactBox}>
                 <View style={styles.avatarBox}>
-                    <Image source={require('@/assets/images/avatar.jpg')} style={{ width: '100%', height: '100%' }} />
+                    <Image source={require('@/assets/images/avatar.png')} style={{ width: '80%', height: '80%' }} />
                 </View>
                 <View style={styles.infosBox}>
                     <Text style={styles.nameText}>{contactItem.name}</Text>
@@ -21,6 +22,7 @@ export function ContactCard({ contact }: Props) {
                     <Text style={styles.phoneText}>{contactItem.phone}</Text>
                 </View>
             </View>
+            <Ionicons name="chevron-forward" size={20} color={AppColors.black + '5'} style={{ opacity: 0.7 }} />
         </View>
     );
 }
@@ -40,11 +42,14 @@ const styles = StyleSheet.create({
         gap: 10,
     },
     avatarBox: {
-        borderWidth: 2,
-        borderColor: AppColors.primary,
-        width: 40,
-        height: 40,
-        borderRadius: "100%",
+        borderWidth: 1,
+        borderColor: AppColors.black + '2',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 50,
+        height: 50,
+        padding: 5,
+        borderRadius: 100,
         boxSizing: 'border-box',
     },
     infosBox: {
@@ -54,12 +59,13 @@ const styles = StyleSheet.create({
     nameText: {
         fontSize: 16,
         color: AppColors.black,
-        fontWeight: '600',
+        fontWeight: '700',
     },
     addressText: {
         fontSize: 14,
         color: AppColors.black,
         opacity: 0.7,
+        fontWeight: '600',
     },
     phoneText: {
         fontSize: 13,
