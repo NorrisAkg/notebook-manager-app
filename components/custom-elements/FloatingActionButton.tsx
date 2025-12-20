@@ -23,7 +23,7 @@ export function FloatingActionButton(props: Props) {
             padding: 5,
             borderRadius: 25,
             position: "absolute",
-            bottom: 20,
+            bottom: 80,
             right: 20,
             zIndex: 20,
             // shadowColor: AppColors.black + '33'
@@ -46,7 +46,7 @@ export function FloatingActionButton(props: Props) {
         },
     });
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, style]}>
             <LinearGradient
                 style={{
                     justifyContent: "center",
