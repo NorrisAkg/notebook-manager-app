@@ -54,11 +54,6 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
   shadowFocused: {
-    // shadowColor: AppColors.primary,
-    // shadowOffset: { width: 0, height: 0 },
-    // shadowOpacity: 1,
-    // shadowRadius: 4,
-    // elevation: 3,
     borderRadius: 15,
     borderColor: AppColors.primary,
     borderWidth: 2,

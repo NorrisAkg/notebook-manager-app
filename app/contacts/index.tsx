@@ -1,14 +1,19 @@
 import { ContactCard } from "@/components/contacts/ContactCard";
 import { AppInput } from "@/components/custom-elements/AppInput";
+import { AppTabs } from "@/components/custom-elements/AppTabs";
 import { FloatingActionButton } from "@/components/custom-elements/FloatingActionButton";
 import { FakeContacts } from "@/constants/faker";
 import { useEffect, useState } from "react";
-import { FlatList, StyleSheet, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { FlatList, StyleSheet, View } from "react-native";
 import type { Contact } from "../../types";
 
 export default function Index() {
   const [contacts, setContacts] = useState<Array<Contact>>(FakeContacts);
+  const tabOptions = [
+    { label: "Tous" },
+    { label: "Récents" },
+    { label: "Favoris" },
+  ];
 
   useEffect(() => {
     // Fetch contacts from an API or local storage if needed
@@ -17,26 +22,26 @@ export default function Index() {
 
   return (
     <View style={styles.container}>
-      {/* <SearchBar placeholder="Rechercher un contact..." /> */}
-      <AppInput placeholder="Rechercher un contact..." trailingIcon="search" />
       <View style={styles.headerContainer}>
-        <Text style={styles.headerTitle}>contacts</Text>
-      </View>
-      <SafeAreaView style={styles.body} edges={["left", "right", "bottom"]}>
-        <FlatList
-          style={{ marginTop: 10 }}
-          data={contacts}
-          ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
-          keyExtractor={(item) => item.id}
-          renderItem={(item) => {
-            const _ = <ContactCard contact={item.item} />;
-
-            return _;
-          }}
+        <AppInput
+          placeholder="Rechercher un contact..."
+          trailingIcon="search"
         />
-      </SafeAreaView>
+      </View>
+      <AppTabs options={tabOptions} />
+      <FlatList
+        style={{ marginTop: 10, paddingBottom: 10, marginBottom: 20 }}
+        data={contacts}
+        ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
+        contentContainerStyle={{ paddingBottom: 40 }}
+        keyExtractor={(item) => item.id}
+        renderItem={(item) => {
+          const _ = <ContactCard contact={item.item} />;
 
-      {/* Floating action button */}
+          return _;
+        }}
+      />
+      {/* </SafeAreaView> */}/{/* Floating action button */}
       <FloatingActionButton
         withGradient
         style={styles.floatingButton}
@@ -48,19 +53,21 @@ export default function Index() {
 
 const styles = StyleSheet.create({
   container: {
+    gap: 12,
     maxHeight: "100%",
     position: "relative",
     paddingHorizontal: 16,
+    paddingBottom: 16,
   },
   headerContainer: {
-    // padding: 16,
+    marginTop: 20,
   },
   headerTitle: {
     fontSize: 24,
     fontWeight: "bold",
   },
   body: {
-    marginBottom: 10,
+    flex: 1,
   },
   floatingButton: {
     backgroundColor: "transparent",
